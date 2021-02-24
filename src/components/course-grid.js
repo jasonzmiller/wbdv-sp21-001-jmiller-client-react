@@ -5,12 +5,20 @@ import {Link} from "react-router-dom";
 const CourseGrid = ({courses, deleteCourse, updateCourse}) =>
     <div>
         <div className="row">
-            <div className="col-12 text-right">
-                <i className="fas fa-folder"></i>
-                <i className="fas fa-sort-alpha-up-alt"></i>
-                <Link to="/courses/table">
-                    <i className="fas fa-th webb-color-blue"></i>
-                </Link>
+            <div className="col-4">
+                <h3>Recent Documents</h3>
+            </div>
+            <div className="col-4">
+                <h3>Owned by me</h3>
+            </div>
+            <div className="col-4 text-right">
+                <span className="webb-whitespace-nowrap">
+                    <i className="fas fa-folder webb-margin"></i>
+                    <i className="fas fa-sort-alpha-up-alt webb-margin"></i>
+                    <Link to="/courses/table">
+                        <i className="fas fa-list webb-color-blue  webb-margin"></i>
+                    </Link>
+                </span>
             </div>
         </div>
         <div className="row">
@@ -18,6 +26,7 @@ const CourseGrid = ({courses, deleteCourse, updateCourse}) =>
                 courses.map((course, ndx) =>
                     <CourseCard key={ndx}
                                 course={course}
+                                title={course.title}
                                 updateCourse={updateCourse}
                                 deleteCourse={deleteCourse}/>
                 )

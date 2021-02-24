@@ -28,7 +28,7 @@ const CourseRow = (
                 {
                     !editing &&
                     <Link to="/courses/editor">
-                        <i className="fa fa-file webb"></i>
+                        <i className="fa fa-file webb-margin"></i>
                         {title}
                     </Link>
                 }
@@ -39,13 +39,15 @@ const CourseRow = (
                            onChange={(event) => setNewTitle(event.target.value)}/>
                 }
             </td>
-            <td>{owner}</td>
-            <td>{lastModified}</td>
+            <td className="d-none d-md-table-cell">{owner}</td>
+            <td className="d-none d-lg-table-cell">{lastModified}</td>
             <td>
-                {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit webb-color-blue"></i>}
-                {!editing && <i onClick={() => deleteCourse(course)} className="fas fa-trash"></i>}
-                {editing  && <i onClick={() => saveTitle()} className="fas fa-check webb-color-green"></i>}
-                {editing  && <i onClick={() => setEditing(false)} className="fas fa-times webb-color-red"></i>}
+                <span className="webb-whitespace-nowrap">
+                {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit webb-color-blue webb-margin"></i>}
+                {!editing && <i onClick={() => deleteCourse(course)} className="fas fa-trash webb-margin"></i>}
+                {editing  && <i onClick={() => saveTitle()} className="fas fa-check webb-color-green webb-margin"></i>}
+                {editing  && <i onClick={() => setEditing(false)} className="fas fa-times webb-color-red webb-margin"></i>}
+                </span>
             </td>
         </tr>
         )

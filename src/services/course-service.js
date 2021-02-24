@@ -1,11 +1,3 @@
-/*
-(function () {
-    function createCourse(course){}
-    function findAllCourses(){}
-    function findCourseById(id){}
-    function updateCourse(id, course){}
-    function deleteCourse(id){}
-})();*/
 const COURSES_URL = "https://wbdv-generic-server.herokuapp.com/api/001704833/courses";
 
 export const findAllCourses = () =>

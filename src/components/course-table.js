@@ -16,13 +16,13 @@ export default class CourseTable
                     <thead>
                     <tr>
                         <th className="webb-dashtable-title">Title</th>
-                        <th className="webb-dashtable-ownedby d-none d-sm-table-cell">Owned by</th>
-                        <th className="webb-dashtable-lastmodified d-none d-md-table-cell">Last modified by me</th>
+                        <th className="webb-dashtable-ownedby d-none d-md-table-cell">Owned by</th>
+                        <th className="webb-dashtable-lastmodified d-none d-lg-table-cell">Last modified by me</th>
                         <th className="webb-dashtable-trash">
-                            <i className="fas fa-folder"></i>
-                            <i className="fas fa-sort-alpha-up-alt"></i>
+                            <i className="fas fa-folder webb-margin"></i>
+                            <i className="fas fa-sort-alpha-up-alt webb-margin"></i>
                             <Link to="/courses/grid">
-                                <i className="fas fa-th webb-color-blue"></i>
+                                <i className="fas fa-th webb-color-blue webb-margin"></i>
                             </Link></th>
                     </tr>
                     </thead>
