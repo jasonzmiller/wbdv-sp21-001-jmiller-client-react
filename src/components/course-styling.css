@@ -99,8 +99,15 @@
 
 .webb-pull-bottom-right {
     position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.webb-pull-bottom-right-fixed {
+    position: fixed;
     bottom: 20px;
     right: 15px;
+    z-index: 1;
 }
 
 .webb-margin {

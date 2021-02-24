@@ -5,6 +5,7 @@ import CourseEditor from "./course-editor";
 import {Route} from "react-router-dom";
 import courseService from "../services/course-service";
 import CourseNavbar from "./course-navbar";
+import CourseRow from "./course-row";
 
 export default class CourseManager extends React.Component {
     state = {
@@ -45,6 +46,23 @@ export default class CourseManager extends React.Component {
         })))
     }
 
+    addSpecifiedCourse = (title) => {
+        const newCourse = {
+            title: title,
+            owner: "me",
+            lastModified: "today"
+        }
+        courseService.createCourse(newCourse)
+            .then(course => this.setState(
+                (prevState) => ({
+                    ...prevState,
+                    courses: [
+                        ...prevState.courses,
+                        course]
+                })
+            ))
+    }
+
     deleteCourse = (courseToDelete) => {
         courseService.deleteCourse(courseToDelete._id)
             .then(status => {
@@ -67,7 +85,13 @@ export default class CourseManager extends React.Component {
                 </Route>
 
                 <Route path={["/courses/table", "/courses/grid"]}>
-                    <CourseNavbar addCourse={this.addCourse}/>
+                    <CourseNavbar addCourse={this.addCourse}
+                                  addSpecifiedCourse={this.addSpecifiedCourse}
+                                  course={this.state.course}
+                                  // title={this.state.course.title}
+                                  // owner={this.state.course.owner}
+                                  // lastModified={this.state.course.lastModified}
+                    />
                 </Route>
 
                 <div className="container webb-padding-20px webb-padding-top-65px">
@@ -84,7 +108,17 @@ export default class CourseManager extends React.Component {
                     </Route>
                 </div>
 
-                <i className="fas fa-3x fa-plus-circle webb-bottom-right webb-color-red"
+                <Route path="/" exact={true}>
+                    <div className="container">
+                        <a href="/courses/table">
+                            <button type="button" className="btn btn-outline-primary btn-lg btn-block">Table</button>
+                        </a>
+                        <a href="/courses/grid">
+                            <button type="button" className="btn btn-outline-primary btn-lg btn-block">Grid</button>
+                        </a>
+                    </div>
+                </Route>
+                <i className="fas fa-3x fa-plus-circle webb-pull-bottom-right-fixed webb-color-red"
                    onClick={() => this.addCourse()}></i>
             </div>
         )
