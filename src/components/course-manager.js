@@ -87,7 +87,7 @@ export default class CourseManager extends React.Component {
                 <Route path={["/courses/table", "/courses/grid"]}>
                     <CourseNavbar addCourse={this.addCourse}
                                   addSpecifiedCourse={this.addSpecifiedCourse}
-                                  course={this.state.course}
+                                  courses={this.state.courses}
                                   // title={this.state.course.title}
                                   // owner={this.state.course.owner}
                                   // lastModified={this.state.course.lastModified}
