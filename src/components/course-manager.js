@@ -43,7 +43,7 @@ export default class CourseManager extends React.Component {
                     courses: [
                         ...prevState.courses,
                         course]
-        })))
+                })))
     }
 
     addSpecifiedCourse = (title) => {
@@ -67,10 +67,10 @@ export default class CourseManager extends React.Component {
         courseService.deleteCourse(courseToDelete._id)
             .then(status => {
                 this.setState((prevState) => ({
-                        ...prevState,
-                        courses: prevState
-                            .courses
-                            .filter(course => course !== courseToDelete)
+                    ...prevState,
+                    courses: prevState
+                        .courses
+                        .filter(course => course !== courseToDelete)
                 }))
             })
     }
@@ -88,9 +88,6 @@ export default class CourseManager extends React.Component {
                     <CourseNavbar addCourse={this.addCourse}
                                   addSpecifiedCourse={this.addSpecifiedCourse}
                                   courses={this.state.courses}
-                                  // title={this.state.course.title}
-                                  // owner={this.state.course.owner}
-                                  // lastModified={this.state.course.lastModified}
                     />
                 </Route>
 
