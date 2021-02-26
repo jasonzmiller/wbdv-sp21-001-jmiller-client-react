@@ -5,13 +5,10 @@ const CourseRow = (
     {
         deleteCourse,
         updateCourse,
-        course,
-        title,
-        owner,
-        lastModified
+        course
     }) => {
     const [editing, setEditing] = useState(false)
-    const [newTitle, setNewTitle] = useState(title)
+    const [newTitle, setNewTitle] = useState(course.title)
 
     const saveTitle = () => {
         setEditing(false)
@@ -29,7 +26,7 @@ const CourseRow = (
                     !editing &&
                     <Link to="/courses/editor">
                         <i className="fa fa-file webb-margin"></i>
-                        {title}
+                        {course.title}
                     </Link>
                 }
                 {
@@ -39,8 +36,8 @@ const CourseRow = (
                            onChange={(event) => setNewTitle(event.target.value)}/>
                 }
             </td>
-            <td className="d-none d-md-table-cell">{owner}</td>
-            <td className="d-none d-lg-table-cell">{lastModified}</td>
+            <td className="d-none d-md-table-cell">{course.owner}</td>
+            <td className="d-none d-lg-table-cell">{course.lastModified}</td>
             <td>
                 <span className="webb-whitespace-nowrap">
                 {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit webb-color-blue webb-margin"></i>}

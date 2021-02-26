@@ -2,11 +2,10 @@ const COURSES_URL = "https://wbdv-generic-server.herokuapp.com/api/001704833/cou
 
 export const findAllCourses = () =>
     fetch(COURSES_URL)
-        .then(response => response.json())
-
-export const findCourseById = (courseId) =>
-    fetch(`${COURSES_URL}/${courseId}`)
-        .then(response => response.json())
+        .then(response =>
+        {
+            response.json()
+        })
 
 export const createCourse = (course) =>
     fetch(COURSES_URL, {
@@ -18,14 +17,8 @@ export const createCourse = (course) =>
     })
         .then(response => response.json())
 
-export const updateCourse = (courseId, course) =>
-    fetch(`${COURSES_URL}/${courseId}`, {
-        method: 'PUT',
-        body: JSON.stringify(course),
-        headers: {
-            'content-type': 'application/json'
-        }
-    })
+export const findCourseById = (courseId) =>
+    fetch(`${COURSES_URL}/${courseId}`)
         .then(response => response.json())
 
 export const deleteCourse = (courseId) =>
@@ -34,10 +27,22 @@ export const deleteCourse = (courseId) =>
     })
         .then(response => response.json())
 
-export default {
+export const updateCourse = (courseId, course) =>
+    fetch(`${COURSES_URL}/${courseId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(course)
+    })
+        .then(response => response.json())
+
+const api = {
     findAllCourses,
     findCourseById,
+    deleteCourse: deleteCourse,
     createCourse,
-    updateCourse,
-    deleteCourse
+    updateCourse: updateCourse
 }
+
+export default api

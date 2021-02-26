@@ -3,14 +3,24 @@ import CourseTable from "./course-table";
 import CourseGrid from "./course-grid";
 import CourseEditor from "./course-editor";
 import {Route} from "react-router-dom";
-import courseService from "../services/course-service";
+import courseService, {findAllCourses, deleteCourse} from "../services/course-service";
 import CourseNavbar from "./course-navbar";
 import CourseRow from "./course-row";
 
 export default class CourseManager extends React.Component {
     state = {
-        courses: []
+        courses: [
+            {
+                title: "New Course",
+                owner: "New Owner",
+                lastModified: "Never"
+            }
+        ]
     }
+
+    componentDidMount = () =>
+        courseService.findAllCourses()
+            .then(courses => this.setState({courses}))
 
     updateCourse = (course) => {
         courseService.updateCourse(course._id, course)
@@ -24,10 +34,6 @@ export default class CourseManager extends React.Component {
         courseService.findCourseById(course._id, course)
             .then(() => console.log(course))
     }
-
-    componentDidMount = () =>
-        courseService.findAllCourses()
-            .then(courses => this.setState({courses}))
 
 
     addCourse = () => {
@@ -66,17 +72,21 @@ export default class CourseManager extends React.Component {
     deleteCourse = (courseToDelete) => {
         courseService.deleteCourse(courseToDelete._id)
             .then(status => {
+                // this.setState((prevState) => ({
+                //     ...prevState,
+                //     courses: prevState
+                //         .courses
+                //         .filter(course => course !== courseToDelete)
+                // }))
                 this.setState((prevState) => ({
-                    ...prevState,
-                    courses: prevState
-                        .courses
-                        .filter(course => course !== courseToDelete)
+                    courses: prevState.courses.filter(c => c._id !== courseToDelete._id)
                 }))
             })
     }
 
 
     render() {
+        {console.log(this.state)}
         return (
             <div>
                 <Route path="/courses/editor"
@@ -93,9 +103,11 @@ export default class CourseManager extends React.Component {
 
                 <div className="container webb-padding-20px webb-padding-top-65px">
                     <Route path="/courses/table">
-                        <CourseTable updateCourse={this.updateCourse}
-                                     deleteCourse={this.deleteCourse}
-                                     courses={this.state.courses}/>
+                        <CourseTable
+                                    updateCourse={this.updateCourse}
+                                    deleteCourse={this.deleteCourse}
+                                    courses={this.state.courses}
+                        />
                     </Route>
 
                     <Route path="/courses/grid">

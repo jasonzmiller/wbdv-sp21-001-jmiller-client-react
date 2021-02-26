@@ -19,7 +19,8 @@ const CourseNavbar = ({addCourse, addSpecifiedCourse, courses, lastModified, own
                 <div className="col-8">
                     <input
                         className="form-control"
-                        value={courses.course.title}
+                        defaultValue="New Course"
+                        id="course-title"
                     />
                 </div>
 

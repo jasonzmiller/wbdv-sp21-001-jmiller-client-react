@@ -6,9 +6,12 @@ export default class CourseTable extends React.Component {
 
     constructor(props) {
         super(props)
+        console.log(this.props)
+
     }
 
     render() {
+        console.log(this.props)
         return(
             <div>
                 <table className="table">
@@ -30,16 +33,14 @@ export default class CourseTable extends React.Component {
                     </thead>
                     <tbody>
                     {
-                        this.props.courses.map((course, ndx) =>
-                            <CourseRow
-                                updateCourse={this.props.updateCourse}
-                                deleteCourse={this.props.deleteCourse}
-                                key={ndx}
-                                course={course}
-                                title={course.title}
-                                owner={course.owner}
-                                lastModified={course.lastModified}
-                            />)
+                        console.log(this.props)
+                        // this.props.courses.map((course, ndx) =>
+                        //     <CourseRow
+                        //         updateCourse={this.props.updateCourse}
+                        //         deleteCourse={this.props.deleteCourse}
+                        //         key={ndx}
+                        //         course={course}
+                        //     />)
                     }
                     </tbody>
                 </table>
